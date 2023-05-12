@@ -1,8 +1,4 @@
-
-
 from collections import defaultdict
-from pyvis import network as net
-from IPython.display import display, HTML
 import plotly.graph_objects as go
 import random
 
@@ -118,29 +114,6 @@ class Grafo:
 
         return resultado
 
-    def showMapa2D(self) -> None:
-        Vertices, Arestas = self.getVertices(), self.getArestas()
-
-        # congig
-        interface = net.Network(
-                height='100%', 
-                width='100%',
-                notebook=True, 
-                heading='Grafo 2D'
-            )
-        
-        # Add Vertices
-        for v in Vertices:
-            interface.add_node(v, label=str(v))
-
-        # Add Arestas
-        interface.add_arestas(Arestas)
-
-        # export interfaces
-        interface.show('Grafo2D.html')
-        display(HTML('Grafo2D.html'))
-
-
     def showMapa3D(self) -> None:
         numVertices = self.getNumVertices()
         arestas_weights = [1] * (numVertices)
@@ -160,23 +133,9 @@ class Grafo:
             v1: [random.random()*50 + (classes[v1]*50), random.random()*50 + (classes[v1]*50), random.random()*50 + (classes[v1]*50)] for v1 in self.getVertices()
         }
 
-
-        ## codigo que obtem as coordenadas a partir do dataset
-        pos = []
-        with open("./IrisDataset.csv", "r") as arquivo:
-            for linha in arquivo.readlines()[1:]:
-                l = (linha.split(","))[:4]
-                pos.append([float(i) for i in l])
-
-        ## dict com as coordenadas relativas aos atributos petal_lenght, petal width, sepal_lenght e sepal_width 
-        grafo_3D = {
-            v: pos[v] for v in self.getVertices()
-        }
-
         x_vertices = [grafo_3D[key][0] for key in grafo_3D.keys()]
         y_vertices = [grafo_3D[key][1] for key in grafo_3D.keys()]
         z_vertices = [grafo_3D[key][2] for key in grafo_3D.keys()]
-        w_vertices = [grafo_3D[key][2] for key in grafo_3D.keys()]
 
         x_arestas, y_arestas, z_arestas = [], [], []
         xtp, ytp, ztp = [], [], []
@@ -196,21 +155,9 @@ class Grafo:
             ztp.append(0.5 * (grafo_3D[aresta[0]][2] + grafo_3D[aresta[1]][2]))
 
 
-        etext = [f'weight={w}' for w in arestas_weights]
-
-        # trace_weights = go.Scatter3d(
-        #         x=xtp,
-        #         y=ytp,
-        #         z=ztp,
-        #         mode='markers',
-        #         # Cor das linhas
-        #         marker=dict(color='rgb(125,125,125)', size=1),
-        #         text=etext, 
-        #         hoverinfo='text'
-        #     )
-
         # Criar Linhas
         trace_arestas = go.Scatter3d(
+                name='Arestas',
                 x=x_arestas,
                 y=y_arestas,
                 z=z_arestas,
@@ -220,6 +167,7 @@ class Grafo:
 
         ## Criar Vertices com a propria classe definida
         trace_vertices1 = go.Scatter3d(
+            name='Setosa',
             x=x_vertices[0:50],
             y=y_vertices[0:50],
             z=z_vertices[0:50],
@@ -230,6 +178,7 @@ class Grafo:
         )
 
         trace_vertices2 = go.Scatter3d(
+            name='Versicolor',
             x=x_vertices[50:100],
             y=y_vertices[50:100],
             z=z_vertices[50:100],
@@ -240,6 +189,7 @@ class Grafo:
         )
 
         trace_vertices3 = go.Scatter3d(
+            name='Virginica',
             x=x_vertices[100:150],
             y=y_vertices[100:150],
             z=z_vertices[100:150],
@@ -262,19 +212,6 @@ class Grafo:
         ## com esse set, as posições são setadas randomicamente
         fig = go.Figure(data=data, layout=layout)
 
-        ## com esse set, as posições são setadas a partir do dataset, com a cor como quarta dimensão
-        fig = go.Figure(data=[go.Scatter3d(
-            x=x_vertices,
-            y=y_vertices,
-            z=z_vertices,
-            mode='markers',
-            marker=dict(
-                size=5,
-                color=w_vertices,       # set color to an array/list of desired values
-                colorscale='Viridis',   # choose a colorscale
-                opacity=0.8
-            )
-        ),trace_arestas], layout=layout)
         fig.show()
 
 
@@ -302,5 +239,4 @@ if __name__ == "__main__":
     name= './v1.out'#grafo.csv'#
       
     g = GrafoFromFile(name)    
-    #g.showMapa2D()
     g.showMapa3D()
