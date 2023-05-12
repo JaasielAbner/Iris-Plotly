@@ -5,8 +5,8 @@ Pasta Plot2d -> Arquivos para printar o grafo em 2d, usando o neato
   neato -x -Goverlap=scale -Tpng grafo.dot > grafo.png``` para gerar a imagem)
 
 Pasta Plot3d -> 
-1. a.py Plota o grafo 3D com valores aleatórios
-2. d.py Plota o grafo 3D com valores definidos 
+1. Usamos o arquivo a.py para plotar o grafo 3D com valores aleatórios nas posições x y z de um vértice.
+2. E para ploar o grafo 3D, recebemos os valores definidos 
   
 Pasta Imagens -> Contem os arquivos png dos grafos 2D, 3D aleatório e definido.
 
