@@ -16,7 +16,9 @@ IrisDataset.csv -> Arquivo CSV contendo a base de dados IrisDataset.
   
 **v1.c** ->
 
-> É o arquivo Main do projeto. Nele se encontra todo o processo, desde ler o arquivo CSV, até a criacão do arquivo TXT para a plotagem do grafo. Abaixo se encontra a lista do passo a passo:
+> É o arquivo Main do projeto. Nele se encontra todo o processo, desde ler o arquivo CSV, até a criacão do arquivo TXT para a plotagem do grafo. 
+> 
+> Abaixo se encontra a lista do passo a passo:
 
 1. 
 
