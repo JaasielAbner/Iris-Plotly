@@ -1,4 +1,4 @@
-# upgraded-meme
+# Iris-Plotly
 
 Plot2d -> Arquivos para printar o grafo em 2d, usando o neato
   (criar a saída do C como lista de adjacencia, executar o script plot.py para gerar um grafo.dot, depois executar o comando ```neato -x -Goverlap=scale -Tpng grafo.dot > grafo.png``` para gerar a imagem)
