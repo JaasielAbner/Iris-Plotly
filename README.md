@@ -1,13 +1,19 @@
 # Iris-Plotly
 
 Pasta Plot2d -> Arquivos para printar o grafo em 2d, usando o neato
-  (criar a saída do C como lista de adjacencia, executar o script plot.py para gerar um grafo.dot, depois executar o comando ```neato -x -Goverlap=scale -Tpng grafo.dot > grafo.png``` para gerar a imagem)
+  (criar a saída do C como lista de adjacencia, executar o script plot.py para gerar um grafo.dot, depois executar o comando ```bash
+  neato -x -Goverlap=scale -Tpng grafo.dot > grafo.png``` para gerar a imagem)
+
+Pasta Plot3d -> a.py Plota o grafo 3D com valores aleatórios
+                d.py Plota o grafo 3D com valores definidos 
   
 Pasta Imagens -> Contem os arquivos png dos grafos 2D, 3D aleatório e definido.
 
 IrisDataset.csv -> Arquivo CSV contendo a base de dados IrisDataset.
 
 a.py -> Plota o grafo em 3D definido e aleatório.
+
+
   
 v1.c cria o grafo, usando a DEN para calcular as arestas
 
