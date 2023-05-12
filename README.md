@@ -4,8 +4,9 @@ Pasta Plot2d -> Arquivos para printar o grafo em 2d, usando o neato
   (criar a saída do C como lista de adjacencia, executar o script plot.py para gerar um grafo.dot, depois executar o comando ```bash
   neato -x -Goverlap=scale -Tpng grafo.dot > grafo.png``` para gerar a imagem)
 
-Pasta Plot3d -> a.py Plota o grafo 3D com valores aleatórios
-                d.py Plota o grafo 3D com valores definidos 
+Pasta Plot3d -> 
+1. a.py Plota o grafo 3D com valores aleatórios
+2. d.py Plota o grafo 3D com valores definidos 
   
 Pasta Imagens -> Contem os arquivos png dos grafos 2D, 3D aleatório e definido.
 
