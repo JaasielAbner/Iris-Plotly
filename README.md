@@ -6,7 +6,7 @@ Pasta Plot2d -> Arquivos para printar o grafo em 2d, usando o neato
 
 Pasta Plot3d -> 
 1. Usamos o arquivo a.py para plotar o grafo 3D com valores aleatórios nas posições x y z de um vértice.
-2. E para ploar o grafo 3D, recebemos os valores definidos 
+2. E para ploar o grafo 3D, recebemos os valores definidos pelo arquivo IrisDataset.csv, e é criado pelo arquivo d.py o grafo 3D com os valores respectivos.
   
 Pasta Imagens -> Contem os arquivos png dos grafos 2D, 3D aleatório e definido.
 
