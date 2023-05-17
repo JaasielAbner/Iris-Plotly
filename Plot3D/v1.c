@@ -5,19 +5,59 @@
 #define LIN 150
 #define COL 4
 #define MATRIX_SIZE 150
+#define CLASS_SIZE 50
+
+void class_limiter(float **matrix)
+{
+    float temp[MATRIX_SIZE];
+    int min_linha_pos[MATRIX_SIZE];
+
+    for (int i = 0; i < MATRIX_SIZE; i++)
+    {
+        for (int j = 0; j < MATRIX_SIZE; j++)
+        {
+            temp[j] = 1000;
+        }
+        
+        int counter = CLASS_SIZE;
+        min_linha_pos[i] = 0;
+        //copia os menores valores da linha para temp limitando em CLASS_SIZE
+        while (counter > 0)
+        {
+            counter--;
+            //encontra menor valor atual
+            for (int j = 0; j < MATRIX_SIZE; j++)
+            {
+                if (matrix[i][j] != 1000){
+                    if (matrix[i][min_linha_pos[i]] > matrix[i][j]) {
+                        min_linha_pos[i] = j;
+                    }
+                }
+                
+            }
+            //tira menor valor atual da matriz
+            temp[min_linha_pos[i]] = matrix[i][min_linha_pos[i]];
+            matrix[i][min_linha_pos[i]] = 1000;
+        }
+
+        for(int j = 0; j < MATRIX_SIZE; j++) {
+            matrix[i][j] = (temp[j]==1000)?-1:(temp[j] * ((temp[j]<0)?-1:1));
+        }
+    }
+}
 
 void normalize_matrix(float **matrix)
 {
-    float media = 1;
     float min = matrix[1][3];
     float max = 0;
 
+    
     // Encontra o valor mínimo e o valor máximo da matriz
     for (int i = 0; i < MATRIX_SIZE; i++)
     {
         for (int j = i + 1; j < MATRIX_SIZE; j++)
         {
-            if (matrix[i][j] < min && matrix[i][j])
+            if (matrix[i][j] < min && matrix[i][j]>0)
             {
                 min = matrix[i][j];
             }
@@ -25,20 +65,27 @@ void normalize_matrix(float **matrix)
             {
                 max = matrix[i][j];
             }
-            media += matrix[i][j];
+
         }
     }
 
-    media = media / (MATRIX_SIZE * (MATRIX_SIZE + 1) / 2);
-    // printf("%f %f %f\n", media, min, max);
 
+    // printf("%f %f %f\n", media, min, max);
     // Normaliza cada elemento da matriz
     for (int i = 0; i < MATRIX_SIZE; i++)
     {
         for (int j = i + 1; j < MATRIX_SIZE; j++)
         {
-            // int v = (matrix[i][j]) / (max);
-            matrix[i][j] = (matrix[i][j] - min) / (max - min) <= 0.3;
+            if (matrix[i][j] != -1){
+                // int v = (matrix[i][j]) / (max);
+                if (matrix[i][j]<0)
+                {
+                    matrix[i][j] *= -1; 
+                }
+                matrix[i][j] = ((matrix[i][j] - min) / (max - min)) <= 0.7;
+            }else {
+                matrix[i][j] = 0;
+            }
         }
     }
 }
@@ -50,7 +97,7 @@ void print_matrix(float **matrix)
     {
         for (int j = i + 1; j < MATRIX_SIZE; j++)
         {
-            if (matrix[i][j])
+            if (matrix[i][j]!=0)
             {
                 printf("%d %d\n", i, j);
             }
@@ -69,7 +116,7 @@ void make_txt(float **matrix)
         fprintf(o, "%d", i + 1);
         for (int j = 0; j < MATRIX_SIZE; j++)
         {
-            if (matrix[i][j])
+            if (matrix[i][j]!=0)
             {
                 fprintf(o, " %d", j + 1);
             }
@@ -80,10 +127,10 @@ void make_txt(float **matrix)
 
 void teste(float **matrix)
 {
-
+    printf("\n");
     for (int i = 0; i < MATRIX_SIZE; i++)
     {
-        for (int j = i + 1; j < MATRIX_SIZE; j++)
+        for (int j = i+1; j < MATRIX_SIZE; j++)
         {
             printf("%.0f ", matrix[i][j]);
         }
@@ -173,12 +220,13 @@ int main()
         }
     }
     free(Mat);
-
+    class_limiter(MatDe);
     normalize_matrix(MatDe);
+
 
     //funcoes de saida
     print_matrix(MatDe);
-    make_txt(MatDe);
+    // make_txt(MatDe);
     // teste(MatDe);
 
     return 0;
