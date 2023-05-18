@@ -6,14 +6,14 @@
 **Pasta Plot2d** -> Arquivos para printar o grafo em 2d, usando o neato
   (criar a saída do C como lista de adjacencia, executar o script plot.py para gerar um grafo.dot, depois executar o comando ```bash
   neato -x -Goverlap=scale -Tpng grafo.dot > grafo.png``` para gerar a imagem)
-
+![Alt text](imagens/2DGrafo.png)
 
 **Pasta Plot3d** -> 
 
 1. Usamos o arquivo **[Plot 3D Aleatório](Plot3D/Plot3D_aleatorio.py)** para plotar o grafo 3D, ultilizando as bibliotecas *pyvis* e *plotly*, com valores aleatórios nas posições *x y z* de um vértice.
-
+![Alt text](imagens/3DGrafo_aleatorio.png)
 2. E para ploar o grafo 3D, tambem ultilizando as bibliotecas *pyvis* e *plotly*, recebemos os valores definidos pelo arquivo IrisDataset.csv, e é criado pelo arquivo **[Plot 3D Definido](Plot3D/Plot3D_definido.py)** o grafo 3D com os valores respectivos.
-
+![Alt text](imagens/3DGrafo_definido.png)
 3. IrisDataset.csv: Arquivo CSV contendo a base de dados IrisDataset.
 
 4. **[Arquivo Main](Plot3D/v1.c)**:
@@ -36,7 +36,8 @@
 
 7.  Agora é executada a parte de funções de saida. A primeira funcão de saida é a *print_matrix()*, que simplismente mostra no console a **Matriz de Adjacencias**
 
-8.  E por ultimo, a função *make_txt*, cria um arquivo **[out.txt](Plot3D/output/out.txt)**, que tem como função, ser lida pelo **[Plot 3D Aleatório](Plot3D/Plot3D_aleatorio.py)**, **[Plot 3D Definido](Plot3D/Plot3D_definido.py)** ou o **[Plot 2D](Plot2D/plot.py)**, e criar as respectivas imagens do grafo. O arquivo **[out.txt](Plot3D/output/out.txt)** tem como conteúdo a quantidade de vérticies, uma lista de cada vérticie e quais outros vertíces tem aresta com o respectivo vértice.
+8.  A função *make_txt*, cria um arquivo **[out.txt](Plot3D/output/out.txt)**, que tem como função, ser lida pelo **[Plot 3D Aleatório](Plot3D/Plot3D_aleatorio.py)**, **[Plot 3D Definido](Plot3D/Plot3D_definido.py)** ou o **[Plot 2D](Plot2D/plot.py)**, e criar as respectivas imagens do grafo. O arquivo **[out.txt](Plot3D/output/out.txt)** tem como conteúdo a quantidade de vérticies, uma lista de cada vérticie e quais outros vertíces tem aresta com o respectivo vértice.
 
+9.  E por ultimo, a função *teste*, que apenas printa a **Matriz de Adjacencias**. Como a matriz é espelhada, a função printa apenas a matriz triangular superior.
 
 **Arquvo ***teste.py***** -> é um script simples para calcular quantas arestas estão corretas e quantas estão erradas.
