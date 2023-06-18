@@ -16,11 +16,13 @@ int main()
 
     free(Mat);
 
-    normalize_matrix(MatDe);
+    normalize_matrix(MatDe, 0.07);
 
     //funcoes de saida
-    BFS(MatDe);
-    // print_matrix(MatDe);
+    int colors[MATRIX_SIZE] = {0};
+    BFS(MatDe, colors);
+    
+    print_matrix(MatDe);
     make_txt(MatDe);
     // teste(MatDe);
 

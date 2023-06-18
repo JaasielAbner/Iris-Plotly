@@ -123,8 +123,9 @@ class Grafo:
 
         classes = []
 
-        for i in range(150):
-            classes.append(i//50)
+        with open("classes.txt", "r") as a:
+            for linha in a.readlines():
+                classes.append(int(linha))
         
 
         ## este dict contem as classes separadas, mas com a posição randômica

@@ -79,7 +79,7 @@ float ** init_database(char* filename){
     return Mat;
 }
 
-void normalize_matrix(float **matrix)
+void normalize_matrix(float **matrix, float lim)
 {
     float media = 1;
     float min = matrix[1][3];
@@ -88,7 +88,7 @@ void normalize_matrix(float **matrix)
     // Encontra o valor mínimo e o valor máximo da matriz
     for (int i = 0; i < MATRIX_SIZE; i++)
     {
-        for (int j = i + 1; j < MATRIX_SIZE; j++)
+        for (int j = 0; j < MATRIX_SIZE; j++)
         {
             if (matrix[i][j] < min && matrix[i][j])
             {
@@ -108,10 +108,10 @@ void normalize_matrix(float **matrix)
     // Normaliza cada elemento da matriz
     for (int i = 0; i < MATRIX_SIZE; i++)
     {
-        for (int j = i + 1; j < MATRIX_SIZE; j++)
+        for (int j = 0; j < MATRIX_SIZE; j++)
         {
             // int v = (matrix[i][j]) / (max);
-            matrix[i][j] = (matrix[i][j] - min) / (max - min) <= .3;
+            matrix[i][j] = (matrix[i][j] - min) / (max - min) <= lim;
         }
     }
 }
@@ -121,7 +121,7 @@ void print_matrix(float **matrix)
     // printf("%d\n", q);
     for (int i = 0; i < MATRIX_SIZE; i++)
     {
-        for (int j = i + 1; j < MATRIX_SIZE; j++)
+        for (int j = 0; j < MATRIX_SIZE; j++)
         {
             if (matrix[i][j])
             {
@@ -156,7 +156,7 @@ void teste(float **matrix)
 
     for (int i = 0; i < MATRIX_SIZE; i++)
     {
-        for (int j = i + 1; j < MATRIX_SIZE; j++)
+        for (int j = 0; j < MATRIX_SIZE; j++)
         {
             printf("%.0f ", matrix[i][j]);
         }
@@ -164,15 +164,13 @@ void teste(float **matrix)
     }
 }
 
-void BFS(float** graph) {
-    int visited[MATRIX_SIZE] = {0};
+void BFS(float** graph, int* visited) {
     int queue[MATRIX_SIZE];
-    int front = 0, rear = 0;
+    int front = 0, rear = 0, color = 1;
 
     for (int startVertex = 0; startVertex < MATRIX_SIZE; startVertex++) {
         if (!visited[startVertex]) {
-            visited[startVertex] = 1;
-            printf("%d ", startVertex + 1);
+            visited[startVertex] = color;
             queue[rear++] = startVertex;
 
             while (front != rear) {
@@ -180,14 +178,12 @@ void BFS(float** graph) {
                 
                 for (int i = 0; i < MATRIX_SIZE; i++) {
                     if (graph[currentVertex][i] && !visited[i]) {
-                        visited[i] = 1;
-                        printf("%d ", i + 1);
+                        visited[i] = color;
                         queue[rear++] = i;
                     }
                 }
             }
+            color++;
         }
     }
-
-    printf("\n");
 }
