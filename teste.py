@@ -25,3 +25,4 @@ for i in range(150):
             erros+=1
 print(acertos, erros)
          
+         
