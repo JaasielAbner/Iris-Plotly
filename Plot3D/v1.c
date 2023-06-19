@@ -22,8 +22,14 @@ int main()
     int colors[MATRIX_SIZE] = {0};
     BFS(MatDe, colors);
     
-    print_matrix(MatDe);
-    make_txt(MatDe);
+    for (int i = 0; i < MATRIX_SIZE; i++)
+    {
+        printf("%d\n", colors[i]);
+    }
+    
+
+    // print_matrix(MatDe);
+    // make_txt(MatDe);
     // teste(MatDe);
 
     return 0;
