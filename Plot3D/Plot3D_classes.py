@@ -9,7 +9,6 @@ def read_data(filename):
     with open(filename, 'r') as file:
         count = 0
         for line in file:
-            print(line)
             if line.split()[0]=="Class":
                 count+=1
             else:

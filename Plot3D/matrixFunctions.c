@@ -111,7 +111,7 @@ void normalize_matrix(float **matrix, float lim)
         for (int j = 0; j < MATRIX_SIZE; j++)
         {
             // int v = (matrix[i][j]) / (max);
-            matrix[i][j] = (matrix[i][j] - min) / (max - min) <= lim;
+            matrix[i][j] = (matrix[i][j] / max) <= lim;
         }
     }
 }

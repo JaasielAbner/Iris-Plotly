@@ -16,7 +16,7 @@ int main()
 
     free(Mat);
 
-    normalize_matrix(MatDe, 0.07);
+    normalize_matrix(MatDe, 0.0065);
 
     //funcoes de saida
     int colors[MATRIX_SIZE] = {0};
@@ -29,7 +29,7 @@ int main()
     
 
     // print_matrix(MatDe);
-    // make_txt(MatDe);
+    make_txt(MatDe);
     // teste(MatDe);
 
     return 0;
